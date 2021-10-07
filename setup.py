@@ -27,7 +27,7 @@ def _read(name):
 _boundary = '\n' + ('-' * 60) + '\n\n'
 
 setup(name='Products.%s' % NAME,
-      version='2.0.dev0',
+      version='2.0',
       description='LDAP-backed plugins for the Zope2 PluggableAuthService',
       long_description=( _read('README.rst') 
                        + _boundary

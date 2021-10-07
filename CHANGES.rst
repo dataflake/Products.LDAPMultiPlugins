@@ -3,7 +3,7 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
-2.0 (unreleased)
+2.0 (2021-10-07)
 ----------------
 - Major packaging cleanups
 
