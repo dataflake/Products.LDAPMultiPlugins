@@ -363,24 +363,6 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
         return result
 
     @security.private
-    def updateUser(self, user_id, login_name):
-        """ Update the login name of the user with id user_id.
-
-        No-op to satisfy the IUserEnumerationPlugin interface. This plugin
-        cannot be used to update records, so we simply return False.
-        """
-        return False
-
-    @security.private
-    def updateEveryLoginName(self, quit_on_first_error=True):
-        """Update login names of all users to their canonical value.
-
-        No-op to satisfy the IUserEnumerationPlugin interface. This plugin
-        cannot be used to update records, so we simply return False.
-        """
-        return False
-
-    @security.private
     def enumerateGroups(self, id=None, exact_match=0, sort_by=None,
                         max_results=None, **kw):
         """ Fulfill the RoleEnumerationPlugin requirements """
@@ -469,6 +451,5 @@ classImplements(ActiveDirectoryMultiPlugin,
                 IGroupEnumerationPlugin,
                 IRoleEnumerationPlugin,
                 *implementedBy(LDAPPluginBase))
-
 
 InitializeClass(ActiveDirectoryMultiPlugin)
