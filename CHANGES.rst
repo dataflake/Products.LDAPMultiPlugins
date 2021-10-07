@@ -3,6 +3,7 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
+
 3.0 (unreleased)
 ----------------
 - remove support for Zope 2
