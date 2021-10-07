@@ -1,10 +1,14 @@
-Changelog for Products.LDAPMultiplugins
-=======================================
+Change log
+==========
 
 To see earlier changes please see HISTORY.txt.
 
 2.0 (unreleased)
 ----------------
+- Major packaging cleanups
+
+- Redo version pins to stay on Zope 2
+
 - Switched documentation to point to the new Git repository
 
 - Refactoring: Moved documentary text files into egg root

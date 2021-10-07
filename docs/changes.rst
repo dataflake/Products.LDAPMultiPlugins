@@ -1,1 +1,1 @@
-.. include:: ../Products/LDAPMultiPlugins/CHANGES.txt
+.. include:: ../CHANGES.rst

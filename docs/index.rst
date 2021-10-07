@@ -19,11 +19,9 @@ Narrative documentation explaining how to use :mod:`Products.LDAPMultiPlugins`.
 .. toctree::
    :maxdepth: 2
 
-   install
-   usage_zmi
-   usage_python
    development
    changes
+   history
 
 API documentation
 -----------------

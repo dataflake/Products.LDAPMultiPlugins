@@ -1,3 +1,12 @@
+.. image:: https://img.shields.io/pypi/v/Products.LDAPMultiPlugins.svg
+   :target: https://pypi.python.org/pypi/Products.LDAPMultiPlugins
+   :alt: Current version on PyPI
+
+.. image:: https://img.shields.io/pypi/pyversions/Products.LDAPMultiPlugins.svg
+   :target: https://pypi.org/project/Products.LDAPMultiPlugins
+   :alt: Supported Python versions
+
+
 ===========================
  Products.LDAPMultiPlugins
 ===========================
@@ -13,7 +22,7 @@ various plugins.
 Bug tracker
 ===========
 Please post questions, bug reports or feature requests to the bug tracker
-at https://bugs.launchpad.net/products.ldapmultiplugins
+at https://github.com/dataflake/Products.LDAPMultiPlugins/issues
 
 
 Special features - Active Directory Multi Plugin

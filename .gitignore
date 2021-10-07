@@ -1,12 +1,25 @@
-
-# /
-/*.egg-info
-/*.egg
-/dist
-/develop-eggs
-/bin
-/parts
-/.installed.cfg
-
-# /docs/
-/docs/_build
+.installed.cfg
+.mr.developer.cfg
+bin/
+build/
+develop/
+develop-eggs/
+dist/
+docs/_build/
+htmlcov/
+include/
+instance/
+lib/
+lib64
+parts/
+.eggs/
+.tox/
+.coverage
+coverage.xml
+default.profraw
+nosetests.xml
+pyvenv.cfg
+*.egg
+*.pyc
+*.swp
+*.egg-info

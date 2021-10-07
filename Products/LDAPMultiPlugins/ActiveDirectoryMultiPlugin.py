@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2005-2009 Jens Vagelpohl and Contributors. All Rights Reserved.
+# Copyright (c) 2005-2021 Jens Vagelpohl and Contributors. All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
 # Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
@@ -11,8 +11,6 @@
 #
 ##############################################################################
 """ ActiveDirectoryUserFolder shim module
-
-$Id$
 """
 
 from ldap.filter import filter_format
@@ -380,6 +378,24 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
         self.ZCacheable_set(result, view_name=view_name, keywords=criteria)
 
         return result
+
+    security.declarePrivate('updateUser')
+    def updateUser(self, user_id, login_name):
+        """ Update the login name of the user with id user_id.
+
+        No-op to satisfy the IUserEnumerationPlugin interface. This plugin
+        cannot be used to update records, so we simply return False.
+        """
+        return False
+
+    security.declarePrivate('updateEveryLoginName')
+    def updateEveryLoginName(self, quit_on_first_error=True):
+        """Update login names of all users to their canonical value.
+
+        No-op to satisfy the IUserEnumerationPlugin interface. This plugin
+        cannot be used to update records, so we simply return False.
+        """
+        return False
 
     security.declarePrivate('enumerateGroups')
     def enumerateGroups( self
