@@ -22,13 +22,13 @@ class LMPBaseTests(unittest.TestCase):
         return self._getTargetClass()('testplugin')
 
     def _getTargetClass(self):
-        from Products.LDAPMultiPlugins.LDAPPluginBase import LDAPPluginBase
+        from ..LDAPPluginBase import LDAPPluginBase
         return LDAPPluginBase
 
     def test_interfaces(self):
-        from Products.LDAPMultiPlugins.interfaces import ILDAPMultiPlugin
+        from ..interfaces import ILDAPMultiPlugin
         from Products.PluggableAuthService.interfaces.plugins import \
-             IUserEnumerationPlugin
+            IUserEnumerationPlugin
         from Products.PluggableAuthService.interfaces.plugins import \
             IGroupsPlugin
         from Products.PluggableAuthService.interfaces.plugins import \
@@ -56,24 +56,12 @@ class LMPBaseTests(unittest.TestCase):
 class ADMPTests(LMPBaseTests):
 
     def _getTargetClass(self):
-        from Products.LDAPMultiPlugins.ActiveDirectoryMultiPlugin import \
-             ActiveDirectoryMultiPlugin       
+        from ..ActiveDirectoryMultiPlugin import ActiveDirectoryMultiPlugin
         return ActiveDirectoryMultiPlugin
 
 
 class LMPTests(LMPBaseTests):
 
     def _getTargetClass(self):
-        from Products.LDAPMultiPlugins.LDAPMultiPlugin import LDAPMultiPlugin
+        from ..LDAPMultiPlugin import LDAPMultiPlugin
         return LDAPMultiPlugin
-
-
-def test_suite():
-    return unittest.TestSuite((
-        unittest.makeSuite(ADMPTests),
-        unittest.makeSuite(LMPTests),
-        ))
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite') 
-

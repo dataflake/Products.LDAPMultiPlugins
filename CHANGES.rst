@@ -3,6 +3,19 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
+3.0 (unreleased)
+----------------
+- remove support for Zope 2
+
+- add support for Zope 4 on Python 2
+
+- remove support for ``bootstrap.py`` for initializing the buildout
+
+- reorganize package structure to fit with common Zope practices
+
+- add linting and coverage testing with ``tox``
+
+
 2.0 (2021-10-07)
 ----------------
 - Major packaging cleanups

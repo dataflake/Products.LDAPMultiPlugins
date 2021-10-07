@@ -16,19 +16,17 @@
 from zope.component import adapts
 
 from Products.GenericSetup.interfaces import ISetupEnviron
-from Products.GenericSetup.utils import exportObjects
-from Products.GenericSetup.utils import importObjects
 from Products.GenericSetup.utils import ObjectManagerHelpers
 from Products.GenericSetup.utils import PropertyManagerHelpers
 from Products.GenericSetup.utils import XMLAdapterBase
+from Products.GenericSetup.utils import exportObjects
+from Products.GenericSetup.utils import importObjects
 
-from Products.LDAPMultiPlugins.interfaces import ILDAPMultiPlugin
+from .interfaces import ILDAPMultiPlugin
 
 
-class LDAPMultiPluginXMLAdapter( XMLAdapterBase
-                               , ObjectManagerHelpers
-                               , PropertyManagerHelpers
-                               ):
+class LDAPMultiPluginXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
+                                PropertyManagerHelpers):
     """ Export/import LDAPMultiPlugins plugins
     """
     adapts(ILDAPMultiPlugin, ISetupEnviron)
@@ -76,9 +74,8 @@ def importLDAPMultiPlugins(context):
     When using this step directly, the setup tool is expected to be
     inside the PluggableAuthService object
     """
-    pas = context.getSite()
-    ldapmultiplugins = [ x for x in context.getSite().objectValues()
-                                        if ILDAPMultiPlugin.providedBy(x) ]
+    ldapmultiplugins = [x for x in context.getSite().objectValues()
+                        if ILDAPMultiPlugin.providedBy(x)]
 
     if not ldapmultiplugins:
         context.getLogger('ldapmultiplugins').debug('Nothing to export.')
@@ -93,13 +90,11 @@ def exportLDAPMultiPlugins(context):
     When using this step directly, the setup tool is expected to be
     inside the PluggableAuthService object
     """
-    pas = context.getSite()
-    ldapmultiplugins = [ x for x in context.getSite().objectValues()
-                                        if ILDAPMultiPlugin.providedBy(x) ]
+    ldapmultiplugins = [x for x in context.getSite().objectValues()
+                        if ILDAPMultiPlugin.providedBy(x)]
 
     if not ldapmultiplugins:
         context.getLogger('ldapmultiplugins').debug('Nothing to export.')
 
     for plugin in ldapmultiplugins:
         exportObjects(plugin, '', context)
-

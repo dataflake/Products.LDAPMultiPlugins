@@ -16,24 +16,23 @@
 import unittest
 
 from OFS.Folder import Folder
-from Products.Five import zcml
+from Zope2.App import zcml
+
 
 try:
     from Products.GenericSetup.testing import BodyAdapterTestCase
     from Products.GenericSetup.testing import ExportImportZCMLLayer
     from Products.GenericSetup.tests.common import BaseRegistryTests
-    
-    
+
     class LMPXMLAdapterTestsBase(BodyAdapterTestCase, unittest.TestCase):
-    
+
         layer = ExportImportZCMLLayer
-    
+
         def _getTargetClass(self):
-            from Products.LDAPMultiPlugins.exportimport \
-                    import LDAPMultiPluginXMLAdapter
-    
+            from ..exportimport import LDAPMultiPluginXMLAdapter
+
             return LDAPMultiPluginXMLAdapter
-    
+
         def setUp(self):
             import Products.LDAPMultiPlugins
             import Products.LDAPUserFolder
@@ -45,22 +44,19 @@ try:
                 pass
             zcml.load_config('configure.zcml', Products.LDAPUserFolder)
             zcml.load_config('configure.zcml', Products.LDAPMultiPlugins)
-    
-    
+
     class _LDAPMultiPluginsSetup(BaseRegistryTests):
-    
+
         layer = ExportImportZCMLLayer
-    
+
         def _initSite(self, use_changed=False):
             self.root.site = Folder(id='site')
             site = self.root.site
-            site._setObject('tested',self._getTargetClass()('tested'))
-    
+            site._setObject('tested', self._getTargetClass()('tested'))
+
             if use_changed:
                 self._edit()
-    
+
             return site
 except ImportError:
     LMPXMLAdapterTestsBase = _LDAPMultiPluginsSetup = unittest.TestCase
-
-

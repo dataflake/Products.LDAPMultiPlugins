@@ -29,9 +29,9 @@ requirements for running the unit tests and building the documentation.
 .. code-block:: console
 
     $ cd Products.LDAPMultiPlugins
-    $ python2.7 -m virtualenv .     # PYTHON 2
+    $ python2.7 -m virtualenv .
     $ bin/pip install -U pip        # Make sure pip is compatible
-    $ bin/pip install zc.buildout
+    $ bin/pip install "setuptools<52" zc.buildout tox twine
     $ bin/buildout
     ...
 
@@ -48,6 +48,36 @@ Once you have a buildout, the tests can be run as follows:
      Ran 62 tests with 0 failures and 0 errors in 0.043 seconds.
    Tearing down left over layers:
      Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
+
+Code coverage and linting is done through the script at ``bin/tox``:
+
+.. code-block:: console
+
+  $ bin/tox -pall  # This runs all tests in parallel to save time
+
+Calling it without any arguments will run the unit tests, code coverage
+report and linting. You can see the tests configured for it with the ``-l``
+switch:
+
+.. code-block:: console
+
+  $ bin/tox -l
+  lint
+  py27
+  coverage
+
+``py27`` represents the unit tests, run under Python 2.7. You can run each
+of these by themselves with the ``-e`` switch:
+
+.. code-block:: console
+
+  $ bin/tox -e coverage
+
+Coverage report output is as text to the terminal, and as HTML files under
+``parts/coverage/``.
+
+The result of linting checks are shown as text on the terminal as well as
+HTML files under ``parts/flake8/``
 
 
 Building the documentation using :mod:`zc.buildout`
@@ -75,11 +105,9 @@ by the buildout.
 .. code-block:: console
 
     $ cd Products.LDAPMultiPlugins
-    $ bin/pip install -U wheel twine
-    $ rm -rf dist
     $ bin/buildout -N
     $ bin/buildout setup setup.py sdist bdist_wheel
-    $ bin/twine upload -s dist/*
+    $ bin/twine upload -s dist/Products.LDAPMultiPlugins-<VERSION>*
 
 The ``bin/buildout`` step will make sure the correct package information
 is used.

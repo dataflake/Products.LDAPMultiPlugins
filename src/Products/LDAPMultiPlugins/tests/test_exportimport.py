@@ -15,9 +15,13 @@
 
 import unittest
 
+from .base import LMPXMLAdapterTestsBase
+from .base import _LDAPMultiPluginsSetup
+
+
 try:
     from Products.GenericSetup.tests.common import DummyExportContext
-    from Products.GenericSetup.tests.common import DummyImportContext 
+    from Products.GenericSetup.tests.common import DummyImportContext
 
     def test_suite():
         return unittest.TestSuite((
@@ -33,23 +37,20 @@ except ImportError:
     def test_suite():
         return unittest.TestSuite()
 
-from Products.LDAPMultiPlugins.tests.base import _LDAPMultiPluginsSetup
-from Products.LDAPMultiPlugins.tests.base import LMPXMLAdapterTestsBase
-
 
 class LDAPMultiPluginXMLAdapterTests(LMPXMLAdapterTestsBase):
 
     def setUp(self):
-        from Products.LDAPMultiPlugins.LDAPMultiPlugin import LDAPMultiPlugin
+        from ..LDAPMultiPlugin import LDAPMultiPlugin
         LMPXMLAdapterTestsBase.setUp(self)
         self._obj = LDAPMultiPlugin('tested')
         self._BODY = _LDAPMULTIPLUGIN_BODY
 
+
 class ActiveDirectoryMultiPluginXMLAdapterTests(LMPXMLAdapterTestsBase):
 
     def setUp(self):
-        from Products.LDAPMultiPlugins.ActiveDirectoryMultiPlugin import \
-            ActiveDirectoryMultiPlugin
+        from ..ActiveDirectoryMultiPlugin import ActiveDirectoryMultiPlugin
         LMPXMLAdapterTestsBase.setUp(self)
         self._obj = ActiveDirectoryMultiPlugin('tested')
         self._BODY = _ACTIVEDIRECTORYMULTIPLUGIN_BODY
@@ -58,7 +59,7 @@ class ActiveDirectoryMultiPluginXMLAdapterTests(LMPXMLAdapterTestsBase):
 class LDAPMultiPluginExportTests(_LDAPMultiPluginsSetup):
 
     def _getTargetClass(self):
-        from Products.LDAPMultiPlugins.LDAPMultiPlugin import LDAPMultiPlugin
+        from ..LDAPMultiPlugin import LDAPMultiPlugin
         return LDAPMultiPlugin
 
     def _edit(self):
@@ -67,8 +68,7 @@ class LDAPMultiPluginExportTests(_LDAPMultiPluginsSetup):
         plugin.prefix = 'plugin_prefix'
 
     def test_unchanged(self):
-        from Products.LDAPMultiPlugins.exportimport import \
-            exportLDAPMultiPlugins
+        from ..exportimport import exportLDAPMultiPlugins
 
         site = self._initSite(use_changed=False)
         context = DummyExportContext(site)
@@ -81,8 +81,7 @@ class LDAPMultiPluginExportTests(_LDAPMultiPluginsSetup):
         self.assertEqual(content_type, 'text/xml')
 
     def test_changed(self):
-        from Products.LDAPMultiPlugins.exportimport import \
-            exportLDAPMultiPlugins
+        from ..exportimport import exportLDAPMultiPlugins
 
         site = self._initSite(use_changed=True)
         context = DummyExportContext(site)
@@ -98,8 +97,7 @@ class LDAPMultiPluginExportTests(_LDAPMultiPluginsSetup):
 class ADMultiPluginExportTests(_LDAPMultiPluginsSetup):
 
     def _getTargetClass(self):
-        from Products.LDAPMultiPlugins.ActiveDirectoryMultiPlugin import \
-            ActiveDirectoryMultiPlugin
+        from ..ActiveDirectoryMultiPlugin import ActiveDirectoryMultiPlugin
         return ActiveDirectoryMultiPlugin
 
     def _edit(self):
@@ -113,8 +111,7 @@ class ADMultiPluginExportTests(_LDAPMultiPluginsSetup):
         plugin.group_recurse_depth = 0
 
     def test_unchanged(self):
-        from Products.LDAPMultiPlugins.exportimport import \
-            exportLDAPMultiPlugins
+        from ..exportimport import exportLDAPMultiPlugins
 
         site = self._initSite(use_changed=False)
         context = DummyExportContext(site)
@@ -127,8 +124,7 @@ class ADMultiPluginExportTests(_LDAPMultiPluginsSetup):
         self.assertEqual(content_type, 'text/xml')
 
     def test_changed(self):
-        from Products.LDAPMultiPlugins.exportimport import \
-            exportLDAPMultiPlugins
+        from ..exportimport import exportLDAPMultiPlugins
 
         site = self._initSite(use_changed=True)
         context = DummyExportContext(site)
@@ -144,12 +140,11 @@ class ADMultiPluginExportTests(_LDAPMultiPluginsSetup):
 class LDAPMultiPluginImportTests(_LDAPMultiPluginsSetup):
 
     def _getTargetClass(self):
-        from Products.LDAPMultiPlugins.LDAPMultiPlugin import LDAPMultiPlugin
+        from ..LDAPMultiPlugin import LDAPMultiPlugin
         return LDAPMultiPlugin
 
     def test_normal(self):
-        from Products.LDAPMultiPlugins.exportimport import \
-            importLDAPMultiPlugins
+        from ..exportimport import importLDAPMultiPlugins
 
         site = self._initSite()
         plugin = site.tested
@@ -165,13 +160,12 @@ class LDAPMultiPluginImportTests(_LDAPMultiPluginsSetup):
 class ADMultiPluginImportTests(_LDAPMultiPluginsSetup):
 
     def _getTargetClass(self):
-        from Products.LDAPMultiPlugins.ActiveDirectoryMultiPlugin import \
+        from ..ActiveDirectoryMultiPlugin import \
             ActiveDirectoryMultiPlugin
         return ActiveDirectoryMultiPlugin
 
     def test_normal(self):
-        from Products.LDAPMultiPlugins.exportimport import \
-            importLDAPMultiPlugins
+        from ..exportimport import importLDAPMultiPlugins
 
         site = self._initSite()
         plugin = site.tested
@@ -189,9 +183,8 @@ class ADMultiPluginImportTests(_LDAPMultiPluginsSetup):
         self.assertEquals(plugin.group_recurse_depth, 0)
 
 
-
 _LDAPMULTIPLUGIN_BODY = """\
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object name="tested" meta_type="LDAP Multi Plugin">
  <property name="prefix"></property>
  <property name="title"></property>
@@ -199,7 +192,7 @@ _LDAPMULTIPLUGIN_BODY = """\
 """
 
 _ACTIVEDIRECTORYMULTIPLUGIN_BODY = """\
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object name="tested" meta_type="ActiveDirectory Multi Plugin">
  <property name="prefix"></property>
  <property name="title"></property>
@@ -212,7 +205,7 @@ _ACTIVEDIRECTORYMULTIPLUGIN_BODY = """\
 """
 
 _CHANGED_LMP_EXPORT = """\
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object name="tested" meta_type="LDAP Multi Plugin">
  <property name="prefix">plugin_prefix</property>
  <property name="title">Plugin Title</property>
@@ -220,7 +213,7 @@ _CHANGED_LMP_EXPORT = """\
 """
 
 _CHANGED_AD_EXPORT = """\
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object name="tested" meta_type="ActiveDirectory Multi Plugin">
  <property name="prefix">plugin_prefix</property>
  <property name="title">Plugin Title</property>

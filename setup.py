@@ -18,27 +18,23 @@ from setuptools import setup
 
 
 NAME = 'LDAPMultiPlugins'
-here = os.path.abspath(os.path.dirname(__file__))
 
-def _read(name):
-    f = open(os.path.join(here, name))
-    return f.read()
 
-_boundary = '\n' + ('-' * 60) + '\n\n'
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+
 
 setup(name='Products.%s' % NAME,
-      version='2.0',
+      version='3.0.dev0',
       description='LDAP-backed plugins for the Zope2 PluggableAuthService',
-      long_description=( _read('README.rst') 
-                       + _boundary
-                       + _read('CHANGES.rst')
-                       ),
+      long_description=read('README.rst'),
       classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Framework :: Zope2",
-        "Framework :: Zope :: 2",
+        "Development Status :: 6 - Mature",
+        "Framework :: Zope",
+        "Framework :: Zope :: 4",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Zope Public License",
+        "Operating System :: OS Independent",
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 2 :: Only",
@@ -50,27 +46,27 @@ setup(name='Products.%s' % NAME,
       keywords='web application server zope zope2 ldap',
       author="Jens Vagelpohl and contributors",
       author_email="jens@dataflake.org",
-      url="http://pypi.python.org/pypi/Products.%s" % NAME,
+      url="https://github.com/dataflake/%s" % NAME,
       project_urls={
         'Issue Tracker': ('https://github.com/dataflake/'
                           'Products.LDAPMultiPlugins/issues'),
         'Sources': 'https://github.com/dataflake/Products.LDAPMultiPlugins',
       },
       license="ZPL 2.1",
-      packages=find_packages(),
+      packages=find_packages('src'),
       include_package_data=True,
       namespace_packages=['Products'],
+      package_dir={'': 'src'},
       zip_safe=False,
       python_requires='>=2.7,<3',
       install_requires=[
         'setuptools',
-        'Zope2 <4',
-        'python-ldap <3',
-        'Products.LDAPUserFolder <3',
-        'Products.PluggableAuthService <2',
+        'Zope >= 4.0b5, <5',
+        'Products.LDAPUserFolder <4',
+        'Products.PluggableAuthService <3',
         ],
       extras_require={
-        'exportimport': ['Products.GenericSetup <1.9'],
+        'exportimport': ['Products.GenericSetup >= 2.0b1'],
         'docs': [
           'Sphinx',
           'sphinx_rtd_theme',
@@ -83,4 +79,3 @@ setup(name='Products.%s' % NAME,
       Products.%s = Products.%s:initialize
       """ % (NAME, NAME),
       )
-
