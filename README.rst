@@ -1,3 +1,11 @@
+.. image:: https://github.com/dataflake/Products.LDAPMultiPlugins/actions/workflows/tests.yml/badge.svg?branch=3.x
+   :target: https://github.com/dataflake/Products.LDAPMultiPlugins/actions/workflows/tests.yml
+   :alt: Automated test results
+
+.. image:: https://coveralls.io/repos/github/dataflake/Products.LDAPMultiPlugins/badge.svg?branch=3.x
+   :target: https://coveralls.io/github/dataflake/Products.LDAPMultiPlugins?branch=3.x
+   :alt: Test coverage
+
 .. image:: https://img.shields.io/pypi/v/Products.LDAPMultiPlugins.svg
    :target: https://pypi.python.org/pypi/Products.LDAPMultiPlugins
    :alt: Current version on PyPI
@@ -13,10 +21,16 @@
 
 .. contents::
 
-The LDAPMultiPlugins provides PluggableAuthService plugins that use LDAP as 
-the backend for the services they provide. The PluggableAuthService is a 
-Zope user folder product that can be extended in modular fashion using 
+The LDAPMultiPlugins provides PluggableAuthService plugins that use LDAP as
+the backend for the services they provide. The PluggableAuthService is a
+Zope user folder product that can be extended in modular fashion using
 various plugins.
+
+The plugin provides a PluggableAuthService-compatible shim around a
+`LDAPUserFolder <https://productsldapuserfolder.readthedocs.io>`_ instance.
+After instantiating a plugin all further configuration is done on the
+LDAPUserFolder instance, which is created automatically inside the plugin.
+Visit the :term:`ZMI` `Configure` tab to find it.
 
 
 Bug tracker

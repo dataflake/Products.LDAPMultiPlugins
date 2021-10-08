@@ -46,78 +46,49 @@ addActiveDirectoryMultiPluginForm = DTMLFile('addActiveDirectoryMultiPlugin',
                                              _dtmldir)
 
 
-def manage_addActiveDirectoryMultiPlugin(
-        self, id, title, LDAP_server, login_attr, uid_attr, users_base,
-        users_scope, roles, groups_base, groups_scope, binduid, bindpwd,
-        binduid_usage=1, rdn_attr='cn', local_groups=0, use_ssl=0,
-        encryption='SHA', read_only=0, REQUEST=None):
+def manage_addActiveDirectoryMultiPlugin(self, id, title, REQUEST=None):
     """ Factory method to instantiate a ActiveDirectoryMultiPlugin """
     # Make sure we really are working in our container (the
     # PluggableAuthService object)
     self = self.this()
 
-    # Value needs massaging, there's some magic transcending a simple true
-    # or false expeced by the LDAP delegate :(
-    if use_ssl:
-        use_ssl = 1
-    else:
-        use_ssl = 0
-
     # Instantiate the folderish adapter object
-    lmp = ActiveDirectoryMultiPlugin(id, title=title)
-    self._setObject(id, lmp)
+    self._setObject(id, ActiveDirectoryMultiPlugin(id, title=title))
     lmp = getattr(aq_base(self), id)
-    lmp_base = aq_base(lmp)
 
     # Put the "real" LDAPUserFolder inside it
     manage_addLDAPUserFolder(lmp)
-    luf = getattr(lmp_base, 'acl_users')
-
-    host_elems = LDAP_server.split(':')
-    host = host_elems[0]
-    if len(host_elems) > 1:
-        port = host_elems[1]
-    else:
-        if use_ssl:
-            port = '636'
-        else:
-            port = '389'
-
-    luf.manage_addServer(host, port=port, use_ssl=use_ssl)
-    luf.manage_edit(title, login_attr, uid_attr, users_base, users_scope,
-                    roles, groups_base, groups_scope, binduid, bindpwd,
-                    binduid_usage=binduid_usage, rdn_attr=rdn_attr,
-                    local_groups=local_groups, encryption=encryption,
-                    read_only=read_only, REQUEST=None)
 
     # clean out the __allow_groups__ bit because it is not needed here
     # and potentially harmful
+    lmp_base = aq_base(lmp)
     if hasattr(lmp_base, '__allow_groups__'):
         del lmp_base.__allow_groups__
 
-    uf = lmp.acl_users
-    uf._ldapschema = {'cn': {'ldap_name': 'cn',
-                             'friendly_name': 'Canonical Name',
-                             'multivalued': '',
-                             'public_name': ''},
-                      'sn': {'ldap_name': 'sn',
-                             'friendly_name': 'Last Name',
-                             'multivalued': '',
-                             'public_name': 'last_name'}}
-    uf.manage_addLDAPSchemaItem('dn', 'Distinguished Name',
-                                public_name='dn')
-    uf.manage_addLDAPSchemaItem('sAMAccountName', 'Windows Login Name',
-                                public_name='windows_login_name')
-    uf.manage_addLDAPSchemaItem('objectGUID', 'AD Object GUID',
-                                public_name='objectGUID')
-    uf.manage_addLDAPSchemaItem('givenName', 'First Name',
-                                public_name='first_name')
-    uf.manage_addLDAPSchemaItem('sn', 'Last Name',
-                                public_name='last_name')
-    uf.manage_addLDAPSchemaItem('memberOf',
-                                'Group DNs',
-                                public_name='memberOf',
-                                multivalued=True)
+    # Add some AD-specific schema items for convenience
+    luf = getattr(lmp_base, 'acl_users')
+    luf._ldapschema = {'cn': {'ldap_name': 'cn',
+                              'friendly_name': 'Canonical Name',
+                              'multivalued': '',
+                              'public_name': ''},
+                       'sn': {'ldap_name': 'sn',
+                              'friendly_name': 'Last Name',
+                              'multivalued': '',
+                              'public_name': 'last_name'}}
+    luf.manage_addLDAPSchemaItem('dn', 'Distinguished Name',
+                                 public_name='dn')
+    luf.manage_addLDAPSchemaItem('sAMAccountName', 'Windows Login Name',
+                                 public_name='windows_login_name')
+    luf.manage_addLDAPSchemaItem('objectGUID', 'AD Object GUID',
+                                 public_name='objectGUID')
+    luf.manage_addLDAPSchemaItem('givenName', 'First Name',
+                                 public_name='first_name')
+    luf.manage_addLDAPSchemaItem('sn', 'Last Name',
+                                 public_name='last_name')
+    luf.manage_addLDAPSchemaItem('memberOf',
+                                 'Group DNs',
+                                 public_name='memberOf',
+                                 multivalued=True)
 
     if REQUEST is not None:
         REQUEST.RESPONSE.redirect('%s/manage_main' % self.absolute_url())
@@ -127,6 +98,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
     """ The adapter that mediates between the PAS and the LDAPUserFolder """
     security = ClassSecurityInfo()
     meta_type = 'ActiveDirectory Multi Plugin'
+    zmi_icon = 'far fa-address-book'
 
     _properties = LDAPPluginBase._properties + (
         {'id': 'groupid_attr', 'type': 'string', 'mode': 'w'},

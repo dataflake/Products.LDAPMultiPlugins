@@ -42,50 +42,18 @@ _dtmldir = os.path.join(package_home(globals()), 'dtml')
 addLDAPMultiPluginForm = DTMLFile('addLDAPMultiPlugin', _dtmldir)
 
 
-def manage_addLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
-                              uid_attr, users_base, users_scope, roles,
-                              groups_base, groups_scope, binduid, bindpwd,
-                              binduid_usage=1, rdn_attr='cn', local_groups=0,
-                              use_ssl=0, encryption='SHA', read_only=0,
-                              REQUEST=None):
+def manage_addLDAPMultiPlugin(self, id, title, REQUEST=None):
     """ Factory method to instantiate a LDAPMultiPlugin """
     # Make sure we really are working in our container (the
     # PluggableAuthService object)
     self = self.this()
 
-    # Value needs massaging, there's some magic transcending a simple true
-    # or false expeced by the LDAP delegate :(
-    if use_ssl:
-        use_ssl = 1
-    else:
-        use_ssl = 0
-
     # Instantiate the folderish adapter object
-    lmp = LDAPMultiPlugin(id, title=title)
-    self._setObject(id, lmp)
+    self._setObject(id, LDAPMultiPlugin(id, title=title))
     lmp = getattr(aq_base(self), id)
-    lmp_base = aq_base(lmp)
 
     # Put the "real" LDAPUserFolder inside it
     manage_addLDAPUserFolder(lmp)
-    luf = getattr(lmp_base, 'acl_users')
-
-    host_elems = LDAP_server.split(':')
-    host = host_elems[0]
-    if len(host_elems) > 1:
-        port = host_elems[1]
-    else:
-        if use_ssl:
-            port = '636'
-        else:
-            port = '389'
-
-    luf.manage_addServer(host, port=port, use_ssl=use_ssl)
-    luf.manage_edit(title, login_attr, uid_attr, users_base, users_scope,
-                    roles, groups_base, groups_scope, binduid, bindpwd,
-                    binduid_usage=binduid_usage, rdn_attr=rdn_attr,
-                    local_groups=local_groups, encryption=encryption,
-                    read_only=read_only, REQUEST=None)
 
     # clean out the __allow_groups__ bit because it is not needed here
     # and potentially harmful
@@ -101,6 +69,7 @@ class LDAPMultiPlugin(LDAPPluginBase):
     """ The adapter that mediates between the PAS and the LDAPUserFolder """
     security = ClassSecurityInfo()
     meta_type = 'LDAP Multi Plugin'
+    zmi_icon = 'fas fa-address-book'
 
     @security.private
     def getGroupsForPrincipal(self, user, request=None, attr=None):

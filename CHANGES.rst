@@ -16,6 +16,10 @@ To see earlier changes please see HISTORY.txt.
 
 - add linting and coverage testing with ``tox``
 
+- simplify the ZMI add form and remove all LDAP-specific settings.
+  Configuring the LDAPUserFolder inside the plugin should only be done
+  on the user folder instance itself.
+
 
 2.0 (2021-10-07)
 ----------------
@@ -39,5 +43,3 @@ To see earlier changes please see HISTORY.txt.
 - Bug: enumerateUsers returned undesired results if an exact match
   was required since LDAP searches are not case sensitive.
   (https://bugs.launchpad.net/bugs/585901)
-
-
