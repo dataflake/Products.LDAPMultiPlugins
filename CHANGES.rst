@@ -3,6 +3,9 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
+4.0 (unreleased)
+----------------
+
 
 3.0 (2021-10-08)
 ----------------

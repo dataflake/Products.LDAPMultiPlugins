@@ -1,9 +1,9 @@
-.. image:: https://github.com/dataflake/Products.LDAPMultiPlugins/actions/workflows/tests.yml/badge.svg?branch=3.x
+.. image:: https://github.com/dataflake/Products.LDAPMultiPlugins/actions/workflows/tests.yml/badge.svg
    :target: https://github.com/dataflake/Products.LDAPMultiPlugins/actions/workflows/tests.yml
    :alt: Automated test results
 
-.. image:: https://coveralls.io/repos/github/dataflake/Products.LDAPMultiPlugins/badge.svg?branch=3.x
-   :target: https://coveralls.io/github/dataflake/Products.LDAPMultiPlugins?branch=3.x
+.. image:: https://coveralls.io/repos/github/dataflake/Products.LDAPMultiPlugins/badge.svg
+   :target: https://coveralls.io/github/dataflake/Products.LDAPMultiPlugins
    :alt: Test coverage
 
 .. image:: https://img.shields.io/pypi/v/Products.LDAPMultiPlugins.svg
