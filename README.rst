@@ -19,8 +19,6 @@
  Products.LDAPMultiPlugins
 ===========================
 
-.. contents::
-
 The LDAPMultiPlugins provides PluggableAuthService plugins that use LDAP as
 the backend for the services they provide. The PluggableAuthService is a
 Zope user folder product that can be extended in modular fashion using
@@ -30,7 +28,7 @@ The plugin provides a PluggableAuthService-compatible shim around a
 `LDAPUserFolder <https://productsldapuserfolder.readthedocs.io>`_ instance.
 After instantiating a plugin all further configuration is done on the
 LDAPUserFolder instance, which is created automatically inside the plugin.
-Visit the :term:`ZMI` `Configure` tab to find it.
+Visit the `ZMI` `Configure` tab to find it.
 
 
 Bug tracker
