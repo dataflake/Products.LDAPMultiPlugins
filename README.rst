@@ -25,7 +25,7 @@ LDAP as the backend for the services they provide. The PluggableAuthService
 is a Zope user folder product that can be extended in modular fashion using
 so-called plugins.
 
-The plugins in this package provides a PluggableAuthService-compatible shim
+The plugins in this package provide a PluggableAuthService-compatible shim
 around a `LDAPUserFolder <https://productsldapuserfolder.readthedocs.io>`_
 instance. After instantiating a plugin all further configuration is done on the
 LDAPUserFolder object itself, which is created automatically inside the plugin.
@@ -40,7 +40,6 @@ at https://github.com/dataflake/Products.LDAPMultiPlugins/issues
 
 Special features - Active Directory Multi Plugin
 ================================================
-
 Properties of the ADMultiPlugin instance:
 
 - groupid_attr - the LDAP attribute used for group ids.
@@ -56,7 +55,6 @@ Properties of the ADMultiPlugin instance:
 
 Active Directory configuration hints
 ====================================
-
 In order for groups support to work correctly, you may have to set the
 following properties. Every situation is different, but this has helped
 some people succeed:
@@ -71,4 +69,3 @@ some people succeed:
 
 Please see README.ActiveDirectory from the LDAPUserFolder package for
 additional information.
-
