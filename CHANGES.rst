@@ -3,7 +3,7 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
-4.0 (unreleased)
+4.0 (2021-11-02)
 ----------------
 - remove support for Python 2 and add support for Python 3.5 through 3.9.
   This package is now compatible with Zope 4 on Python 3 and Zope 5. If you
