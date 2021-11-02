@@ -153,15 +153,14 @@ class LDAPMultiPluginImportTests(_LDAPMultiPluginsSetup):
         context._files['tested.xml'] = _CHANGED_LMP_EXPORT
         importLDAPMultiPlugins(context)
 
-        self.assertEquals(plugin.title, 'Plugin Title')
-        self.assertEquals(plugin.prefix, 'plugin_prefix')
+        self.assertEqual(plugin.title, 'Plugin Title')
+        self.assertEqual(plugin.prefix, 'plugin_prefix')
 
 
 class ADMultiPluginImportTests(_LDAPMultiPluginsSetup):
 
     def _getTargetClass(self):
-        from ..ActiveDirectoryMultiPlugin import \
-            ActiveDirectoryMultiPlugin
+        from ..ActiveDirectoryMultiPlugin import ActiveDirectoryMultiPlugin
         return ActiveDirectoryMultiPlugin
 
     def test_normal(self):
@@ -174,16 +173,16 @@ class ADMultiPluginImportTests(_LDAPMultiPluginsSetup):
         context._files['tested.xml'] = _CHANGED_AD_EXPORT
         importLDAPMultiPlugins(context)
 
-        self.assertEquals(plugin.title, 'Plugin Title')
-        self.assertEquals(plugin.prefix, 'plugin_prefix')
-        self.assertEquals(plugin.groupid_attr, 'cn')
-        self.assertEquals(plugin.grouptitle_attr, 'sn')
-        self.assertEquals(plugin.group_class, 'groupOfNames')
-        self.assertEquals(plugin.group_recurse, 0)
-        self.assertEquals(plugin.group_recurse_depth, 0)
+        self.assertEqual(plugin.title, 'Plugin Title')
+        self.assertEqual(plugin.prefix, 'plugin_prefix')
+        self.assertEqual(plugin.groupid_attr, 'cn')
+        self.assertEqual(plugin.grouptitle_attr, 'sn')
+        self.assertEqual(plugin.group_class, 'groupOfNames')
+        self.assertEqual(plugin.group_recurse, 0)
+        self.assertEqual(plugin.group_recurse_depth, 0)
 
 
-_LDAPMULTIPLUGIN_BODY = """\
+_LDAPMULTIPLUGIN_BODY = b"""\
 <?xml version="1.0" encoding="utf-8"?>
 <object name="tested" meta_type="LDAP Multi Plugin">
  <property name="prefix"></property>
@@ -191,7 +190,7 @@ _LDAPMULTIPLUGIN_BODY = """\
 </object>
 """
 
-_ACTIVEDIRECTORYMULTIPLUGIN_BODY = """\
+_ACTIVEDIRECTORYMULTIPLUGIN_BODY = b"""\
 <?xml version="1.0" encoding="utf-8"?>
 <object name="tested" meta_type="ActiveDirectory Multi Plugin">
  <property name="prefix"></property>
@@ -204,7 +203,7 @@ _ACTIVEDIRECTORYMULTIPLUGIN_BODY = """\
 </object>
 """
 
-_CHANGED_LMP_EXPORT = """\
+_CHANGED_LMP_EXPORT = b"""\
 <?xml version="1.0" encoding="utf-8"?>
 <object name="tested" meta_type="LDAP Multi Plugin">
  <property name="prefix">plugin_prefix</property>
@@ -212,7 +211,7 @@ _CHANGED_LMP_EXPORT = """\
 </object>
 """
 
-_CHANGED_AD_EXPORT = """\
+_CHANGED_AD_EXPORT = b"""\
 <?xml version="1.0" encoding="utf-8"?>
 <object name="tested" meta_type="ActiveDirectory Multi Plugin">
  <property name="prefix">plugin_prefix</property>

@@ -15,7 +15,7 @@
 
 import logging
 import os
-from urllib import quote_plus
+from urllib.parse import quote_plus
 
 from ldap.filter import filter_format
 
@@ -305,8 +305,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
                     seen.append(l_res['dn'])
 
             if sort_by is not None:
-                result.sort(lambda a, b: cmp(a.get(sort_by, '').lower(),
-                                             b.get(sort_by, '').lower()))
+                result.sort(key=lambda item: item.get(sort_by, '').lower())
 
             if isinstance(max_results, int) and len(result) > max_results:
                 result = result[:max_results-1]
@@ -322,8 +321,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
                 result.append(tmp)
 
             if sort_by is not None:
-                result.sort(lambda a, b: cmp(a.get(sort_by, '').lower(),
-                                             b.get(sort_by, '').lower()))
+                result.sort(key=lambda item: item.get(sort_by, '').lower())
 
             if isinstance(max_results, int) and len(result) > max_results:
                 result = result[:max_results-1]
@@ -399,8 +397,8 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
             results.append(tmp)
 
         if sort_by is not None:
-            results.sort(lambda a, b: cmp(a.get(sort_by, '').lower(),
-                                          b.get(sort_by, '').lower()))
+            results.sort(key=lambda item: item.get(sort_by, '').lower())
+
         if isinstance(max_results, int) and len(results) > max_results:
             results = results[:max_results+1]
 

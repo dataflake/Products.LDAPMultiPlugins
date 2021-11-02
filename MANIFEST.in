@@ -2,6 +2,7 @@ include *.py
 include *.rst
 include *.txt
 include buildout.cfg
+include buildout4.cfg
 include tox.ini
 
 recursive-include docs Makefile

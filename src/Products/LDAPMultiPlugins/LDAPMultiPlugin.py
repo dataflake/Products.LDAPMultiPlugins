@@ -15,7 +15,7 @@
 
 import logging
 import os
-from urllib import quote_plus
+from urllib.parse import quote_plus
 
 from AccessControl import ClassSecurityInfo
 from AccessControl.class_init import InitializeClass
@@ -101,7 +101,7 @@ class LDAPMultiPlugin(LDAPPluginBase):
 
         groups = acl.getGroups(ldap_user.getUserDN(), attr=attr)
 
-        result = tuple([x[0] for x in groups])
+        result = tuple(x[0] for x in groups)
         self.ZCacheable_set(result, view_name=view_name, keywords=criteria)
 
         return result
@@ -197,8 +197,7 @@ class LDAPMultiPlugin(LDAPPluginBase):
                     seen.append(l_res['dn'])
 
             if sort_by is not None:
-                result.sort(lambda a, b: cmp(a.get(sort_by, '').lower(),
-                                             b.get(sort_by, '').lower()))
+                result.sort(key=lambda item: item.get(sort_by, '').lower())
 
             if isinstance(max_results, int) and len(result) > max_results:
                 result = result[:max_results-1]

@@ -36,7 +36,7 @@ try:
         def setUp(self):
             import Products.LDAPMultiPlugins
             import Products.LDAPUserFolder
-            super(LMPXMLAdapterTestsBase, self).setUp()
+            super().setUp()
             try:
                 import Products.CMFCore
                 zcml.load_config('meta.zcml', Products.CMFCore)

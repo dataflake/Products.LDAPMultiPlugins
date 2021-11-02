@@ -29,8 +29,8 @@ requirements for running the unit tests and building the documentation.
 .. code-block:: console
 
     $ cd Products.LDAPMultiPlugins
-    $ python2.7 -m virtualenv .
-    $ bin/pip install -U pip        # Make sure pip is compatible
+    $ python3.7 -m venv .
+    $ bin/pip install -U pip wheel       # Make sure pip is compatible
     $ bin/pip install "setuptools<52" zc.buildout tox twine
     $ bin/buildout
     ...
@@ -63,7 +63,11 @@ switch:
 
   $ bin/tox -l
   lint
-  py27
+  py35
+  py36
+  py37
+  py38
+  py39
   coverage
 
 ``py27`` represents the unit tests, run under Python 2.7. You can run each

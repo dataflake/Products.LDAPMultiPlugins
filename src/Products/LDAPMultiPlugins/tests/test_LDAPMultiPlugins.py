@@ -29,32 +29,34 @@ class LMPBaseTests(unittest.TestCase):
         plugin = self._makeOne()
         plugin.prefix = 'prefix_'
 
-        self.assertEquals(plugin._demangle(None), None)
-        self.assertEquals(plugin._demangle('incorrectprefix'), None)
-        self.assertEquals(plugin._demangle('prefix_user1'), 'user1')
+        self.assertEqual(plugin._demangle(None), None)
+        self.assertEqual(plugin._demangle('incorrectprefix'), None)
+        self.assertEqual(plugin._demangle('prefix_user1'), 'user1')
 
 
 class InterfaceTestMixin:
 
     def test_interfaces(self):
-        from ..interfaces import ILDAPMultiPlugin
+        from zope.interface.verify import verifyClass
+
         from Products.PluggableAuthService.interfaces.plugins import \
             IAuthenticationPlugin
         from Products.PluggableAuthService.interfaces.plugins import \
             ICredentialsResetPlugin
         from Products.PluggableAuthService.interfaces.plugins import \
-            IUserEnumerationPlugin
+            IGroupEnumerationPlugin
         from Products.PluggableAuthService.interfaces.plugins import \
             IGroupsPlugin
-        from Products.PluggableAuthService.interfaces.plugins import \
-            IGroupEnumerationPlugin
         from Products.PluggableAuthService.interfaces.plugins import \
             IPropertiesPlugin
         from Products.PluggableAuthService.interfaces.plugins import \
             IRoleEnumerationPlugin
         from Products.PluggableAuthService.interfaces.plugins import \
             IRolesPlugin
-        from zope.interface.verify import verifyClass
+        from Products.PluggableAuthService.interfaces.plugins import \
+            IUserEnumerationPlugin
+
+        from ..interfaces import ILDAPMultiPlugin
 
         verifyClass(ILDAPMultiPlugin, self._getTargetClass())
 

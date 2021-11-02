@@ -5,6 +5,10 @@ To see earlier changes please see HISTORY.txt.
 
 4.0 (unreleased)
 ----------------
+- remove support for Python 2 and add support for Python 3.5 through 3.9.
+  This package is now compatible with Zope 4 on Python 3 and Zope 5. If you
+  use Zope 4 on Python 2, please use the LDAPMultiPlugins 3 release series.
+  If you use Zope 2 please use the LDAPMultiPlugins 2 release series.
 
 
 3.0 (2021-10-08)
