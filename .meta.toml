@@ -42,3 +42,8 @@ additional-config = [
     "- [\"3.5\",   \"py35\"]",
     "- [\"3.6\",   \"py36\"]",
     ]
+additional-install = [
+    "set -ex",
+    "sudo apt update",
+    "sudo apt install -y ldap-utils slapd libldap2-dev libsasl2-dev",
+    ]
