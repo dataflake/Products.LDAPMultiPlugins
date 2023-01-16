@@ -3,8 +3,9 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
-4.1 (unreleased)
+4.1 (2023-01-16)
 ----------------
+- add support for Python 3.10 and 3.11
 
 
 4.0 (2021-11-02)
