@@ -3,8 +3,9 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
-4.2 (unreleased)
+5.0 (unreleased)
 ----------------
+- drop support for Python 3.5 and 3.6
 
 
 4.1 (2023-01-16)

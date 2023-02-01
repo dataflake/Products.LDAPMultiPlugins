@@ -24,13 +24,15 @@ try:
     from Products.GenericSetup.tests.common import DummyImportContext
 
     def test_suite():
+        loader = unittest.defaultTestLoader
         return unittest.TestSuite((
-            unittest.makeSuite(LDAPMultiPluginXMLAdapterTests),
-            unittest.makeSuite(ActiveDirectoryMultiPluginXMLAdapterTests),
-            unittest.makeSuite(LDAPMultiPluginExportTests),
-            unittest.makeSuite(ADMultiPluginExportTests),
-            unittest.makeSuite(LDAPMultiPluginImportTests),
-            unittest.makeSuite(ADMultiPluginImportTests),
+            loader.loadTestsFromTestCase(LDAPMultiPluginXMLAdapterTests),
+            loader.loadTestsFromTestCase(
+                ActiveDirectoryMultiPluginXMLAdapterTests),
+            loader.loadTestsFromTestCase(LDAPMultiPluginExportTests),
+            loader.loadTestsFromTestCase(ADMultiPluginExportTests),
+            loader.loadTestsFromTestCase(LDAPMultiPluginImportTests),
+            loader.loadTestsFromTestCase(ADMultiPluginImportTests),
         ))
 
 except ImportError:

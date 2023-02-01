@@ -24,27 +24,23 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 
-setup(name='Products.%s' % NAME,
-      version='4.2.dev0',
+setup(name=f'Products.{NAME}',
+      version='5.0.dev0',
       description='LDAP-backed plugins for the Zope PluggableAuthService',
       long_description=read('README.rst'),
       classifiers=[
         "Development Status :: 6 - Mature",
         "Framework :: Zope",
-        "Framework :: Zope :: 4",
         "Framework :: Zope :: 5",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Zope Public License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
-        "Programming Language :: Python :: 3 :: Only",
         "Topic :: Internet :: WWW/HTTP :: Site Management",
         "Topic :: Software Development",
         "Topic :: System :: Systems Administration ::"
@@ -53,7 +49,7 @@ setup(name='Products.%s' % NAME,
       keywords='web application server zope ldap',
       author="Jens Vagelpohl and contributors",
       author_email="jens@dataflake.org",
-      url="https://github.com/dataflake/%s" % NAME,
+      url=f'https://github.com/dataflake/{NAME}',
       project_urls={
         'Issue Tracker': ('https://github.com/dataflake/'
                           'Products.LDAPMultiPlugins/issues'),
@@ -65,7 +61,7 @@ setup(name='Products.%s' % NAME,
       namespace_packages=['Products'],
       package_dir={'': 'src'},
       zip_safe=False,
-      python_requires='>=3.5',
+      python_requires='>=3.7',
       install_requires=[
         'setuptools',
         'Zope >= 4.0b5',
@@ -81,8 +77,8 @@ setup(name='Products.%s' % NAME,
           'pkginfo'
         ],
       },
-      entry_points="""
+      entry_points=f"""
       [zope2.initialize]
-      Products.%s = Products.%s:initialize
-      """ % (NAME, NAME),
+      Products.{NAME} = Products.{NAME}:initialize
+      """
       )
