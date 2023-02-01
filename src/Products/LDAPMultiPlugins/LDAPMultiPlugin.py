@@ -129,7 +129,7 @@ class LDAPMultiPlugin(LDAPPluginBase):
         uid_attr = acl.getProperty('_uid_attr')
         rdn_attr = acl.getProperty('_rdnattr')
         plugin_id = self.getId()
-        edit_url = '%s/%s/manage_userrecords' % (plugin_id, acl.getId())
+        edit_url = '{}/{}/manage_userrecords'.format(plugin_id, acl.getId())
 
         if acl is None:
             return ()
@@ -149,7 +149,7 @@ class LDAPMultiPlugin(LDAPPluginBase):
                 result.append({'id': ldap_user.getId(),
                                'login': ldap_user.getProperty(login_attr),
                                'pluginid': plugin_id,
-                               'editurl': '%s?%s' % (edit_url, qs)})
+                               'editurl': '{}?{}'.format(edit_url, qs)})
         else:
             l_results = []
             seen = []
@@ -192,7 +192,7 @@ class LDAPMultiPlugin(LDAPPluginBase):
                     l_res['login'] = l_res[login_attr]
                     l_res['pluginid'] = plugin_id
                     quoted_dn = quote_plus(l_res['dn'])
-                    l_res['editurl'] = '%s?user_dn=%s' % (edit_url, quoted_dn)
+                    l_res['editurl'] = f'{edit_url}?user_dn={quoted_dn}'
                     result.append(l_res)
                     seen.append(l_res['dn'])
 

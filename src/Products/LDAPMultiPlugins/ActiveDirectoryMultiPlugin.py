@@ -161,8 +161,8 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
             return ()
         cns = [x.split('=')[1] for x in cns]
         cn_flts = [filter_format('(cn=%s)', (cn,)) for cn in cns]
-        filt = '(&(objectClass=%s)(|%s))' % (self.group_class,
-                                             ''.join(cn_flts))
+        filt = '(&(objectClass={})(|{}))'.format(self.group_class,
+                                                 ''.join(cn_flts))
 
         delegate = acl._delegate
         R = delegate.search(acl.groups_base, acl.groups_scope, filter=filt)
@@ -213,7 +213,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
 
         if filt_bits:
             bits_s = ''.join(filt_bits)
-            filt = "(&(objectClass=%s)(|%s))" % (self.group_class, bits_s)
+            filt = "(&(objectClass={})(|{}))".format(self.group_class, bits_s)
             acl = self.acl_users
             delegate = acl._delegate
             R = delegate.search(acl.groups_base, acl.groups_scope, filter=filt)
@@ -250,7 +250,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
         login_attr = acl.getProperty('_login_attr')
         uid_attr = acl.getProperty('_uid_attr')
         plugin_id = self.getId()
-        edit_url = '%s/%s/manage_userrecords' % (plugin_id, acl.getId())
+        edit_url = '{}/{}/manage_userrecords'.format(plugin_id, acl.getId())
 
         if login_attr in kw:
             login = kw[login_attr]
@@ -278,7 +278,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
                                'login': ldap_user.getProperty(login_attr),
                                'pluginid': plugin_id,
                                'title': ldap_user.getProperty(login_attr),
-                               'editurl': '%s?%s' % (edit_url, qs),
+                               'editurl': '{}?{}'.format(edit_url, qs),
                                })
         elif id or login or kw:
             l_results = []
@@ -300,7 +300,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
                     l_res['login'] = l_res[login_attr]
                     l_res['pluginid'] = plugin_id
                     quoted_dn = quote_plus(l_res['dn'])
-                    l_res['editurl'] = '%s?user_dn=%s' % (edit_url, quoted_dn)
+                    l_res['editurl'] = f'{edit_url}?user_dn={quoted_dn}'
                     result.append(l_res)
                     seen.append(l_res['dn'])
 
