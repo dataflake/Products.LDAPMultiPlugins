@@ -3,7 +3,7 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
-4.2 (unreleased)
+5.0 (unreleased)
 ----------------
 
 

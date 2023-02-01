@@ -25,7 +25,7 @@ def read(*rnames):
 
 
 setup(name='Products.%s' % NAME,
-      version='4.2.dev0',
+      version='5.0.dev0',
       description='LDAP-backed plugins for the Zope PluggableAuthService',
       long_description=read('README.rst'),
       classifiers=[
