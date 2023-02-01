@@ -5,6 +5,7 @@ To see earlier changes please see HISTORY.txt.
 
 5.0 (unreleased)
 ----------------
+- Drop support for Python 3.5 and 3.6.
 
 
 4.1 (2023-01-16)
