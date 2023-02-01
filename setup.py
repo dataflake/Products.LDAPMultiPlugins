@@ -24,7 +24,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 
-setup(name='Products.%s' % NAME,
+setup(name=f'Products.{NAME}',
       version='5.0.dev0',
       description='LDAP-backed plugins for the Zope PluggableAuthService',
       long_description=read('README.rst'),
@@ -49,7 +49,7 @@ setup(name='Products.%s' % NAME,
       keywords='web application server zope ldap',
       author="Jens Vagelpohl and contributors",
       author_email="jens@dataflake.org",
-      url="https://github.com/dataflake/%s" % NAME,
+      url=f'https://github.com/dataflake/{NAME}',
       project_urls={
         'Issue Tracker': ('https://github.com/dataflake/'
                           'Products.LDAPMultiPlugins/issues'),
@@ -77,8 +77,8 @@ setup(name='Products.%s' % NAME,
           'pkginfo'
         ],
       },
-      entry_points="""
+      entry_points=f"""
       [zope2.initialize]
-      Products.{} = Products.{}:initialize
-      """.format(NAME, NAME),
+      Products.{NAME} = Products.{NAME}:initialize
+      """
       )
