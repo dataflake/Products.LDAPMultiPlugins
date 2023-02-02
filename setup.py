@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2010-2021 Jens Vagelpohl and Contributors. All Rights Reserved.
+# Copyright (c) 2005-2023 Jens Vagelpohl and Contributors. All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
 # Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
@@ -17,14 +17,12 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-NAME = 'LDAPMultiPlugins'
+def read(name):
+    with open(os.path.join(os.path.dirname(__file__), name)) as fp:
+        return fp.read()
 
 
-def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
-
-
-setup(name=f'Products.{NAME}',
+setup(name='Products.LDAPMultiPlugins',
       version='5.0.dev0',
       description='LDAP-backed plugins for the Zope PluggableAuthService',
       long_description=read('README.rst'),
@@ -49,7 +47,7 @@ setup(name=f'Products.{NAME}',
       keywords='web application server zope ldap',
       author="Jens Vagelpohl and contributors",
       author_email="jens@dataflake.org",
-      url=f'https://github.com/dataflake/{NAME}',
+      url='https://github.com/dataflake/Products.LDAPMultiPlugins',
       project_urls={
         'Issue Tracker': ('https://github.com/dataflake/'
                           'Products.LDAPMultiPlugins/issues'),
@@ -64,7 +62,7 @@ setup(name=f'Products.{NAME}',
       python_requires='>=3.7',
       install_requires=[
         'setuptools',
-        'Zope >= 4.0b5',
+        'Zope >= 5',
         'Products.LDAPUserFolder',
         'Products.PluggableAuthService',
         ],
@@ -77,8 +75,8 @@ setup(name=f'Products.{NAME}',
           'pkginfo'
         ],
       },
-      entry_points=f"""
+      entry_points="""
       [zope2.initialize]
-      Products.{NAME} = Products.{NAME}:initialize
+      Products.LDAPMultiPlugins = Products.LDAPMultiPlugins:initialize
       """
       )
