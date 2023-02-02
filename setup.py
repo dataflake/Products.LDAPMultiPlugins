@@ -23,7 +23,7 @@ def read(name):
 
 
 setup(name='Products.LDAPMultiPlugins',
-      version='5.0',
+      version='5.1.dev0',
       description='LDAP-backed plugins for the Zope PluggableAuthService',
       long_description=read('README.rst'),
       classifiers=[
