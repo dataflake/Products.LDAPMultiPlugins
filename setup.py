@@ -49,6 +49,7 @@ setup(name='Products.LDAPMultiPlugins',
       author_email="jens@dataflake.org",
       url='https://github.com/dataflake/Products.LDAPMultiPlugins',
       project_urls={
+        'Documentation': 'https://productsldapmultiplugins.readthedocs.io/',
         'Issue Tracker': ('https://github.com/dataflake/'
                           'Products.LDAPMultiPlugins/issues'),
         'Sources': 'https://github.com/dataflake/Products.LDAPMultiPlugins',
