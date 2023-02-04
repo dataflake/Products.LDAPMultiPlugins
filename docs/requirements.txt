@@ -1,1 +1,2 @@
-.[docs]
+pkginfo
+repoze.sphinx.autointerface
