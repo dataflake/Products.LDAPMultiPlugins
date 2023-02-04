@@ -6,6 +6,10 @@
    :target: https://coveralls.io/github/dataflake/Products.LDAPMultiPlugins
    :alt: Test coverage
 
+.. image:: https://readthedocs.org/projects/productsldapmultiplugins/badge/?version=latest
+   :target: https://productsldapmultiplugins.readthedocs.io
+   :alt: Documentation Status
+
 .. image:: https://img.shields.io/pypi/v/Products.LDAPMultiPlugins.svg
    :target: https://pypi.python.org/pypi/Products.LDAPMultiPlugins
    :alt: Current version on PyPI
