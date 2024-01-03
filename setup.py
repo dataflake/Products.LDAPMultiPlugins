@@ -39,6 +39,7 @@ setup(name='Products.LDAPMultiPlugins',
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Topic :: Internet :: WWW/HTTP :: Site Management",
         "Topic :: Software Development",
         "Topic :: System :: Systems Administration ::"

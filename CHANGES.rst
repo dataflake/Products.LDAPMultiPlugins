@@ -5,6 +5,7 @@ To see earlier changes please see HISTORY.txt.
 
 5.1 (unreleased)
 ----------------
+- add support for Python 3.12,
 
 
 5.0 (2023-02-02)
