@@ -3,7 +3,7 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
-5.1 (unreleased)
+5.1 (2024-01-03)
 ----------------
 - add support for Python 3.12,
 
