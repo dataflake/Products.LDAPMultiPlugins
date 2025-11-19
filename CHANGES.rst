@@ -4,8 +4,9 @@ Change log
 To see earlier changes please see HISTORY.txt.
 
 
-6.1 (unreleased)
+6.1 (2025-11-19)
 ----------------
+- Move all package metadata to ``pyproject.toml``.
 
 
 6.0 (2025-11-19)
