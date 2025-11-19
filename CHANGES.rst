@@ -4,6 +4,10 @@ Change log
 To see earlier changes please see HISTORY.txt.
 
 
+6.1 (unreleased)
+----------------
+
+
 6.0 (2025-11-19)
 ----------------
 - Convert to PEP 420-style namespace package.
