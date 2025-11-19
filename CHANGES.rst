@@ -3,17 +3,19 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
-5.2 (unreleased)
-----------------
 
+6.0 (2025-11-19)
+----------------
+- Convert to PEP 420-style namespace package.
 
 - Add support for Python 3.13, 3.14.
 
 - Drop support for Python 3.7, 3.8, 3.9.
 
+
 5.1 (2024-01-03)
 ----------------
-- add support for Python 3.12,
+- add support for Python 3.12
 
 
 5.0 (2023-02-02)
