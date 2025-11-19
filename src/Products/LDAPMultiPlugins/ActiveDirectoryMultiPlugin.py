@@ -106,7 +106,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
         {'id': 'group_class', 'type': 'string', 'mode': 'w'},
         {'id': 'group_recurse', 'type': 'int', 'mode': 'w'},
         {'id': 'group_recurse_depth', 'type': 'int', 'mode': 'w'},
-        )
+    )
 
     groupid_attr = 'objectGUID'
     grouptitle_attr = 'cn'
@@ -308,7 +308,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
                 result.sort(key=lambda item: item.get(sort_by, '').lower())
 
             if isinstance(max_results, int) and len(result) > max_results:
-                result = result[:max_results-1]
+                result = result[:max_results - 1]
 
         else:
             result = []
@@ -324,7 +324,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
                 result.sort(key=lambda item: item.get(sort_by, '').lower())
 
             if isinstance(max_results, int) and len(result) > max_results:
-                result = result[:max_results-1]
+                result = result[:max_results - 1]
 
         result = tuple(result)
 
@@ -400,7 +400,7 @@ class ActiveDirectoryMultiPlugin(LDAPPluginBase):
             results.sort(key=lambda item: item.get(sort_by, '').lower())
 
         if isinstance(max_results, int) and len(results) > max_results:
-            results = results[:max_results+1]
+            results = results[:max_results + 1]
 
         results = tuple(results)
 

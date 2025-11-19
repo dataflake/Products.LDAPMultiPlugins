@@ -1,2 +1,3 @@
-sphinx>5
-.[docs]
+sphinx
+furo
+repoze.sphinx.autointerface
