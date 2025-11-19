@@ -3,6 +3,9 @@ Change log
 
 To see earlier changes please see HISTORY.txt.
 
+6.2 (unreleased)
+----------------
+
 
 6.1 (2025-11-19)
 ----------------
