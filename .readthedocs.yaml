@@ -11,11 +11,6 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.11"
-  apt_packages:
-    - ldap-utils
-    - slapd
-    - libldap2-dev
-    - libsasl2-dev
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:

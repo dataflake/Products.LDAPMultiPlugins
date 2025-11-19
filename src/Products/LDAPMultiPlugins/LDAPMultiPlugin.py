@@ -200,7 +200,7 @@ class LDAPMultiPlugin(LDAPPluginBase):
                 result.sort(key=lambda item: item.get(sort_by, '').lower())
 
             if isinstance(max_results, int) and len(result) > max_results:
-                result = result[:max_results-1]
+                result = result[:max_results - 1]
 
         result = tuple(result)
         self.ZCacheable_set(result, view_name=view_name, keywords=criteria)
@@ -252,7 +252,7 @@ class LDAPMultiPlugin(LDAPPluginBase):
             return ()
 
         if isinstance(max_results, int) and len(results) > max_results:
-            results = results[:max_results+1]
+            results = results[:max_results + 1]
 
         for rec in results:
             rec['pluginid'] = plugin_id
